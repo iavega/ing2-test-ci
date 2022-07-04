@@ -1,0 +1,19 @@
+
+name: PROD - CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+      with:
+        ORIGIN: ${{ secrets.HOST }}
+        SSHKEY: ${{ secrets.SSH }}
+        NAME: production
+        PORT: ${{ secrets.PORT }}
+        USER: ${{ secrets.USER }}
+    - run: ssh production sh -c 'cd ing2-test-ci && git pull'
