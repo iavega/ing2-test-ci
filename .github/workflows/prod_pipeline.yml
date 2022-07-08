@@ -9,6 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: creating key ssh server1
+      run: echo "${{ secrets.SSH }}"
+    - name: creating key ssh server2
+      run: echo "${{ secrets.USER }}"
+    - name: creating key ssh server3
+      run: echo "${{ secrets.HOST }}"
     - name: creating key ssh server
       run: echo "${{ secrets.SSH }}" >> key
     - name: download file
