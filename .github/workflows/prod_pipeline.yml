@@ -9,14 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: creating key ssh server1
-      run: echo "${{ secrets.SSH }}"
-    - name: creating key ssh server2
-      run: echo "${{ secrets.USER }}"
-    - name: creating key ssh server3
-      run: echo "${{ secrets.HOST }}"
     - name: creating key ssh server
-      run: echo "${{ secrets.SSH }}" >> key
+      env:
+        SSH: ${{ secrets.SSH }}
+      run: echo $SSH >> key
+    - name: download file
+      run: cat key
     - name: download file
       run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && git pull'
     - name: restart services
