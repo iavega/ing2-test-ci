@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    - run: echo ${{ secrets.SSH }} >> key
-    - run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && git pull'
-    - run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'systemctl stop flask-server.service &&s ystemctl start flask-server.service'
+    - name: Deploy server
+      run: echo ${{ secrets.SSH }} >> key
+      run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && git pull'
+      run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'systemctl stop flask-server.service &&s ystemctl start flask-server.service'
