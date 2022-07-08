@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    steps:
     - name: Deploy server
       run: echo ${{ secrets.SSH }} >> key
       run: ssh -i key ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && git pull'
