@@ -16,6 +16,6 @@ jobs:
     - name: update permitions
       run: chmod 400 key
     - name: download file
-      run: ssh -i key -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && git pull'
+      run: ssh -i key -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'cd ing2-test-ci && ls'
     - name: restart services
       run: ssh -i key -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} sh -c 'systemctl stop flask-server.service && systemctl start flask-server.service'
